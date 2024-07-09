@@ -1,7 +1,4 @@
-"use client";
-
 import { validateName } from "@/utils/utils";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Socket } from "socket.io-client";
 
@@ -50,7 +47,7 @@ export default function New({
 
   return (
     <div className="w-full flex items-center h-7 px-1 hover:bg-secondary rounded-sm cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-      <Image
+      <img
         src={
           type === "file"
             ? "/icons/default_file.svg"

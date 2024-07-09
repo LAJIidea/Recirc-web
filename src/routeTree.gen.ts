@@ -16,22 +16,12 @@ import { Route as StatisticsImport } from './routes/statistics'
 import { Route as PaymentsImport } from './routes/payments'
 import { Route as MessagesImport } from './routes/messages'
 import { Route as LoginImport } from './routes/login'
+import { Route as DocumentImport } from './routes/document'
 import { Route as DiscordImport } from './routes/discord'
 import { Route as IndexImport } from './routes/index'
-import { Route as DocumentImoprt } from "./routes/document";
-import { Route as CodeImport } from "./routes/code";
+import { Route as CodeIdImport } from './routes/code.$id'
 
 // Create/Update Routes
-
-const CodeRoute = CodeImport.update({
-  path: '/code',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const DocumentRoute = DocumentImoprt.update({
-  path: '/document',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const WalletRoute = WalletImport.update({
   path: '/wallet',
@@ -58,6 +48,11 @@ const LoginRoute = LoginImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DocumentRoute = DocumentImport.update({
+  path: '/document',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DiscordRoute = DiscordImport.update({
   path: '/discord',
   getParentRoute: () => rootRoute,
@@ -65,6 +60,11 @@ const DiscordRoute = DiscordImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CodeIdRoute = CodeIdImport.update({
+  path: '/code/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -83,7 +83,14 @@ declare module '@tanstack/react-router' {
       id: '/discord'
       path: '/discord'
       fullPath: '/discord'
-      preLoaderRoute: typeof CommentsImport
+      preLoaderRoute: typeof DiscordImport
+      parentRoute: typeof rootRoute
+    }
+    '/document': {
+      id: '/document'
+      path: '/document'
+      fullPath: '/document'
+      preLoaderRoute: typeof DocumentImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -121,18 +128,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WalletImport
       parentRoute: typeof rootRoute
     }
-    '/document': {
-      id: '/document'
-      path: '/document'
-      fullPath: '/document'
-      preLoaderRoute: typeof DocumentImoprt
-      parentRoute: typeof rootRoute
-    }
-    '/code': {
-      id: '/code'
-      path: '/code'
-      fullPath: '/code'
-      preLoaderRoute: typeof CodeImport
+    '/code/$id': {
+      id: '/code/$id'
+      path: '/code/$id'
+      fullPath: '/code/$id'
+      preLoaderRoute: typeof CodeIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -143,13 +143,13 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   DiscordRoute,
+  DocumentRoute,
   LoginRoute,
   MessagesRoute,
   PaymentsRoute,
   StatisticsRoute,
   WalletRoute,
-  DocumentRoute,
-  CodeRoute
+  CodeIdRoute,
 })
 
 /* prettier-ignore-end */
@@ -161,19 +161,24 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/comments",
+        "/discord",
+        "/document",
         "/login",
         "/messages",
         "/payments",
         "/statistics",
-        "/wallet"
+        "/wallet",
+        "/code/$id"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/comments": {
-      "filePath": "comments.tsx"
+    "/discord": {
+      "filePath": "discord.tsx"
+    },
+    "/document": {
+      "filePath": "document.tsx"
     },
     "/login": {
       "filePath": "login.tsx"
@@ -189,6 +194,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/wallet": {
       "filePath": "wallet.tsx"
+    },
+    "/code/$id": {
+      "filePath": "code.$id.tsx"
     }
   }
 }

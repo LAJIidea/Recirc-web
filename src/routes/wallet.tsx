@@ -8,6 +8,7 @@ export const Route = createFileRoute('/wallet')({
     component: () =>
         <>
             <Wallet />
+            <div>sdasdasdadsa</div>
             <Helmet>
                 <title>Wallet</title>
             </Helmet>

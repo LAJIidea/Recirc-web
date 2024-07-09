@@ -34,7 +34,6 @@ import { useState } from "react";
 import { Sandbox } from "@/lib/types";
 import { Button } from "@/components/radix-ui/button";
 import { deleteSandbox, updateSandbox } from "@/lib/actions";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const formSchema = z.object({
@@ -54,7 +53,7 @@ export default function EditSandboxModal({
   const [loading, setLoading] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -77,7 +76,8 @@ export default function EditSandboxModal({
     setLoadingDelete(true);
     await deleteSandbox(data.id);
 
-    router.push("/dashboard");
+    // !todo router push
+    // router.push("/dashboard");
   }
 
   return (

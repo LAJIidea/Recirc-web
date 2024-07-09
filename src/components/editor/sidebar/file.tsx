@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import { getIconForFile } from "vscode-icons-js";
 import { TFile, TTab } from "@/lib/types";
 import { useEffect, useRef, useState } from "react";
@@ -97,7 +94,7 @@ export default function SidebarFile({
           dragging ? "opacity-50 hover:!bg-background" : ""
         } data-[state=open]:bg-secondary/50 w-full flex items-center h-7 px-1 hover:bg-secondary rounded-sm cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring`}
       >
-        <Image
+        <img
           src={imgSrc}
           alt="File Icon"
           width={18}

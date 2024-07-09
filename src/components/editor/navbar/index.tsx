@@ -1,9 +1,5 @@
-"use client";
-
-import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import { Pencil, Users } from "lucide-react";
-import Link from "next/link";
 import { Sandbox, User } from "@/lib/types";
 import UserButton from "@/components/radix-ui/userButton";
 import { Button } from "@/components/radix-ui/button";
@@ -44,12 +40,12 @@ export default function Navbar({
       />
       <div className="h-14 shrink-0 px-2 w-full flex items-center justify-between border-b border-border">
         <div className="flex items-center space-x-4">
-          <Link
+          <a
             href="/"
             className="ring-offset-2 transition-all ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
           >
-            <Image src={Logo} alt="Logo" width={36} height={36} />
-          </Link>
+            <img src={Logo} alt="Logo" width={36} height={36} />
+          </a>
           <div className="text-sm font-medium flex items-center">
             {sandboxData.name}
             {isOwner ? (

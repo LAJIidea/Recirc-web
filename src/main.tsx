@@ -5,6 +5,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App.tsx";
 import "@/styles/globals.css";
+import "@/styles/radix.css"
 
 const qureyClient = new QueryClient();
 

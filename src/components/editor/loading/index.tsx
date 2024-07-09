@@ -1,6 +1,3 @@
-"use client"
-
-import Image from "next/image";
 import Logo from "@/assets/logo.svg"
 import { Skeleton } from "@/components/radix-ui/skeleton"
 import { Loader2, X } from "lucide-react"
@@ -33,7 +30,7 @@ export default function Loading({
   }, [text])
 
   return (
-    <div className="overflow-hidden overscroll-none w-screen flex flex-col justify-center items-center z-0 h-screen bg-background relative">
+    <div className="overflow-hidden overscroll-none w-screen flex flex-col justify-center items-center z-0 h-screen bg-background relative code-sand">
       <Dialog open={open}>
         <DialogContent>
           <DialogHeader>
@@ -65,7 +62,7 @@ export default function Loading({
       {withNav ? (
         <div className="h-14 px-2 w-full flex items-center justify-between border-b border-border">
           <div className="flex items-center space-x-4">
-            <Image src={Logo} alt="Logo" width={36} height={36} />
+            <img src={Logo} alt="Logo" width={36} height={36} />
             <Skeleton className="w-[100px] h-[24px] rounded-md" />
           </div>
           <div className="flex items-center space-x-4">

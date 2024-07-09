@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { getIconForFolder, getIconForOpenFolder } from "vscode-icons-js";
 import { TFile, TFolder, TTab } from "@/lib/types";
@@ -96,7 +93,7 @@ export default function SidebarFolder({
           isDraggedOver ? "bg-secondary/50 rounded-t-sm" : "rounded-sm"
         } w-full flex items-center h-7 px-1 transition-colors hover:bg-secondary cursor-pointer`}
       >
-        <Image
+        <img
           src={`/icons/${folder}`}
           alt="Folder icon"
           width={18}
