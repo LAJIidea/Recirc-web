@@ -1,21 +1,26 @@
-import { Route, Routes } from "react-router-dom";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+import { Toaster } from "react-hot-toast";
 
-import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
-import AboutPage from "@/pages/about";
-
-function App() {
-  return (
-    <Routes>
-      <Route element={<IndexPage />} path="/" />
-      <Route element={<DocsPage />} path="/docs" />
-      <Route element={<PricingPage />} path="/pricing" />
-      <Route element={<BlogPage />} path="/blog" />
-      <Route element={<AboutPage />} path="/about" />
-    </Routes>
-  );
+const router = createRouter({
+  routeTree,
+  defaultPreload: "intent",
+});
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
 }
 
-export default App;
+export default function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster
+        toastOptions={{
+          className: "font-poppinsRegular !bg-primaryBg dark:!bg-darkPrimaryBg !text-black dark:!text-white"
+        }}
+        reverseOrder={true} />
+    </>
+  );
+}
