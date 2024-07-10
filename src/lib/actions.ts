@@ -3,6 +3,13 @@ const WORKERS_KEY = import.meta.env.VITE_WORKERS_KEY as string;
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 import { Sandbox, User, UsersToSandboxes } from "@/lib/types"
 
+export async function getReactDefination() {
+  const data = await fetch(`${SERVER_URL}/react`, {method: 'GET'})
+  const defination = await data.text()
+  console.log(defination)
+  return defination;
+}
+
 export async function getUserData(id: string) {
   const userRes = await fetch(`${SERVER_URL}/users?id=${id}`, {method: 'GET'});
   const userData: User = await userRes.json();

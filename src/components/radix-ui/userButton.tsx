@@ -9,13 +9,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/radix-ui/dropdown-menu";
 import { User } from "@/lib/types";
-import { useClerk } from "@clerk/clerk-react";
+// import { useClerk } from "@clerk/clerk-react";
 import { LogOut, Pencil, Sparkles } from "lucide-react";
 
 export default function UserButton({ userData }: { userData: User }) {
   if (!userData) return null;
 
-  const { signOut } = useClerk();
+  // const { signOut } = useClerk();
   // const router = useRouter();
 
   return (
@@ -59,7 +59,7 @@ export default function UserButton({ userData }: { userData: User }) {
           <span>Edit Profile</span>
         </DropdownMenuItem> */}
         <DropdownMenuItem
-          onClick={() => signOut(() => {/** router.push("/")  */})}
+          // onClick={() => signOut(() => {/** router.push("/")  */})}
           className="!text-destructive cursor-pointer"
         >
           <LogOut className="mr-2 h-4 w-4" />

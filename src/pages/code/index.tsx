@@ -3,8 +3,7 @@ import { lazy, Suspense, useState, useEffect } from "react";
 import Navbar from "@/components/editor/navbar"
 import { Room } from "@/components/editor/live/room"
 import { Sandbox, User, UsersToSandboxes } from "@/lib/types"
-import { useClerk, useUser, ClerkProvider } from "@clerk/clerk-react"
-import { getUserData, getSandboxData, getSharedUsers } from "@/lib/actions"
+import { getUserData, getSandboxData, getSharedUsers, getReactDefination } from "@/lib/actions"
 import Loading from "@/components/editor/loading"
 import fs from "fs"
 
@@ -41,22 +40,24 @@ export default function Code({ params }: { params: { id: string } }) {
     name: string;
   }[]>();
 
-  const [reactDefinitionFile, setReactFile] = useState<string>();
+  const [reactDefinitionFile, setreactDefinitionFile] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
       const user_res = await getUserData("01");
       const sandbox_res = await getSandboxData(sandboxId);
       const shared_res = await getSharedUsers(sandbox_res.usersToSandboxes)
+      const defination = await getReactDefination()
       setUserData(user_res)
       setSandboxData(sandbox_res)
       setShare(shared_res)
+      setreactDefinitionFile(defination)
     };
 
     fetchData();
   }, [sandboxId])
 
-  if (userData && sandboxData && shared) {
+  if (userData && sandboxData && shared && reactDefinitionFile) {
     const isOwner = sandboxData.userId === "01"
     const isSharedUser = shared.some((uts) => uts.id === "01")
   

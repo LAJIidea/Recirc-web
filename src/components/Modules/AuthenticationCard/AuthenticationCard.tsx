@@ -1,4 +1,7 @@
 import { ReactNode } from "@tanstack/react-router";
+import { createContext, useState, useContext } from "react";
+
+// const AuthContext = createContext()
 
 export default function AuthenticationCard({
   children,
