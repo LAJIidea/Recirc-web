@@ -1,6 +1,39 @@
 const DATABASE_WORKER_URL = import.meta.env.VITE_DATABASE_WORKER_URL;
 const WORKERS_KEY = import.meta.env.VITE_WORKERS_KEY as string;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+import { Sandbox, User, UsersToSandboxes } from "@/lib/types"
 
+export async function getUserData(id: string) {
+  const userRes = await fetch(`${SERVER_URL}/users?id=${id}`, {method: 'GET'});
+  const userData: User = await userRes.json();
+  console.log(userData)
+  return userData;
+}
+
+export async function getSandboxData(id:  string) {
+  const sandboxRes = await fetch(
+    `${SERVER_URL}/sandbox?id=${id}`, {
+      method: 'GET'
+    })
+  const sandboxData: Sandbox = await sandboxRes.json()
+  return sandboxData
+}
+
+export const getSharedUsers = async (usersToSandboxes: UsersToSandboxes[]) => {
+  if (!usersToSandboxes) {
+    return []
+  }
+
+  const shared = await Promise.all(
+    usersToSandboxes.map(async (user) => {
+      const userRes = await fetch(`${process.env.SERVER_URL}api/users?id=${user.userId}`, {method: 'GET'})
+      const userData: User = await userRes.json()
+      return { id: userData.id, name: userData.name }
+    })
+  )
+
+  return shared
+}
 
 export async function createSandbox(body: {
   type: string;
